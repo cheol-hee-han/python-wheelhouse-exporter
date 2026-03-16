@@ -1,0 +1,44 @@
+# =============================================================================
+# python-wheelhouse-exporter .gitignore
+# =============================================================================
+
+# 결과물 디렉터리 (다운로드된 .whl 및 압축 파일)
+output/
+
+# uv 관련
+.venv/
+.uv/
+
+# 생성된 requirements.txt (uv export 결과물)
+deps/*/requirements.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# 환경 파일
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 로그
+*.log
