@@ -1,0 +1,19 @@
+[project]
+name = "deps-pypi-server"
+version = "1.0.0"
+description = "Offline-ready Pypiserver runtime for private Python package hosting"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # Pypiserver
+    "pypiserver>=2.4,<3",
+    "passlib>=1.7,<2",
+    "bcrypt>=4.2,<5",
+    "bottle>=0.12,<0.13",
+]
+
+[build-system]
+requires = ["setuptools>=75,<76", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+package = false

@@ -11,6 +11,7 @@ output/
 
 # 생성된 requirements.txt (uv export 결과물)
 deps/*/requirements.txt
+deps/*/uv.lock
 
 # Python
 __pycache__/
