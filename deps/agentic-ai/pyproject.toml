@@ -38,6 +38,12 @@ dependencies = [
     # Misc
     "packaging>=24.1,<25",
     "rich>=13.8,<14",
+
+    # Pypiserver
+    "pypiserver>=2.4,<3",
+    "passlib>=1.7,<2",
+    "bcrypt>=4.2,<5",
+    "bottle>=0.12,<0.13",
 ]
 
 [dependency-groups]

@@ -3,12 +3,20 @@
 # 01-lock-deps.sh
 # uv lock + uv export → requirements.txt 생성
 #
-# Python 버전은 각 deps/<모듈>/pyproject.toml 의 requires-python 을 따릅니다.
+# 각 deps/<모듈>/pyproject.toml 의 의존성을 resolve 하여 uv.lock 을 생성하고,
+# 운영 배포용(dev 제외) requirements.txt 를 추출합니다.
 #
-# 사용법:
-#   bash scripts/01-lock-deps.sh
-#   bash scripts/01-lock-deps.sh --modules=deps/agentic-ai
-#   bash scripts/01-lock-deps.sh --modules=deps/agentic-ai,deps/database
+# 옵션:
+#   --modules=   처리할 deps 폴더 (쉼표 구분)   [기본값: deps/ 하위 전체 자동 탐색]
+#
+# 사용 예시:
+#   bash scripts/01-lock-deps.sh                                     # 전체 모듈
+#   bash scripts/01-lock-deps.sh --modules=deps/agentic-ai           # 단일 모듈
+#   bash scripts/01-lock-deps.sh --modules=deps/agentic-ai,deps/database  # 복수 모듈
+#
+# 참고:
+#   * Python 버전은 각 deps/<모듈>/pyproject.toml 의 requires-python 을 따릅니다.
+#   * 사전 조건: uv 가 설치되어 있어야 합니다.
 # =============================================================================
 
 set -euo pipefail
@@ -26,7 +34,8 @@ LOG_FILE="${OUTPUT_DIR}/lock-deps.log"
 # ----------------------------------------------------------------------------
 MODULES=""
 
-source $HOME/.local/bin/env 2>/dev/null || true  # uv 설치 후 바로 사용할 수 있도록 env 로드 (선택적)
+# uv 설치 후 PATH 에 등록되지 않은 경우를 위해 env 로드 (선택적, 실패 무시)
+source "$HOME/.local/bin/env" 2>/dev/null || true
 
 # ----------------------------------------------------------------------------
 # 인자 파싱
